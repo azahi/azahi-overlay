@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>azahi@teknki.io</email>
+		<name>azahi</name>
+	</maintainer>
+	<use>
+		<flag name="fish-completion">
+			Enable fish completion support.
+		</flag>
+		<flag name="dmenu">
+			Add support for x11-misc/dmenu with the 'passmenu' program.
+		</flag>
+	</use>
+</pkgmetadata>
