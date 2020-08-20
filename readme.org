@@ -1,5 +1,5 @@
 * azahi (Overlay)
-Personal overlay for packages that either can't unfit for
+Personal overlay for packages that either unfit for
 [[https://github.com/azahi/ricerlay][ricerlay]] or stale/broken or sometimes
 even straight up missing (shock!) from the main Gentoo tree.
 ** Note
