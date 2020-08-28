@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>azahi@teknik.io</email>
+		<name>azahi</name>
+	</maintainer>
+	<use>
+		<flag name="ripgrep">
+			Install batgrep
+		</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">eth-p/bat-extras</remote-id>
+	</upstream>
+</pkgmetadata>
