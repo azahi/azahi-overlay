@@ -8,7 +8,7 @@ depend() {
 
 checkconfig() {
 	if [ ! -f /etc/mpdscribble.conf ]; then
-	eerror "mpdscribble configuration file /etc/mpdscribble/mpdscribble.conf doesn't exist"
+	eerror "mpdscribble configuration file /etc/mpdscribble.conf doesn't exist"
 		return 1
 	fi
 }
