@@ -40,7 +40,8 @@ DOCS=( "README.rst" "doc/mpdscribble.conf" )
 
 src_prepare() {
 	default
-	sed -e '/^install_data/{N;N;N;d;}' -i meson.build || die
+	sed -e '/^install_data/{N;N;N;d;}' \
+		-i meson.build || die
 }
 
 src_configure() {

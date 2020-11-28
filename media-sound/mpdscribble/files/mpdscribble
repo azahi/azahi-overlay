@@ -1,29 +1,32 @@
 #!/sbin/openrc-run
+# Copyright 1999-2020 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+: CFGFILE=${CFGFILE:=/etc/mpdscribble.conf}
+
+get_config() {
+	x=$1
+	test -e ${CFGFILE} || return 1
+	cat ${CFGFILE} | \
+		sed -n -e '/^[ \t]*'${x}'/{s:^[ \t]*'${x}'[ \t]\+"\?\([^#"]\+\)[^"]*"\?$:\1: ; p }' | \
+		awk '{print $2}'
+}
+
+extra_started_commands='reload'
+command=/usr/bin/mpdscribble
+command_args="--conf ${CFGFILE}"
+required_files=${CFGFILE}
+pidfile=$(get_config pid)
+description="An MPD client that submits information to Audioscrobbler"
 
 depend() {
-	need ntpd
-	need localmount
-	need net
+	need mpd
+	use net
+	config ${CFGFILE}
 }
 
-checkconfig() {
-	if [ ! -f /etc/mpdscribble.conf ]; then
-	eerror "mpdscribble configuration file /etc/mpdscribble.conf doesn't exist"
-		return 1
-	fi
-}
-
-start () {
-	checkconfig || return 1
-
-	ebegin "Starting Music Player Daemon Audioscrobbler Client: mpdscribble"
-	start-stop-daemon --start -p /var/run/mpdscribble.pid -b -m --exec /usr/bin/mpdscribble
-	eend $?
-}
-
-stop () {
-	ebegin "Stopping Music Player Daemon Audioscrobbler Client: mpdscribble"
-	start-stop-daemon --stop --quiet -p /var/run/mpdscribble.pid -m --exec /usr/bin/mpdscribble || eerror "mpdscribble is not running"
-	rm -f /var/run/mpdscribble.pid
+reload() {
+	ebegin "Reloading ${RC_SVCNAME}"
+	start-stop-daemon --pidfile ${pidfile} --signal HUP
 	eend $?
 }
