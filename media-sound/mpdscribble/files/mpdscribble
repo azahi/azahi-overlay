@@ -9,12 +9,12 @@ get_config() {
 	test -e ${CFGFILE} || return 1
 	cat ${CFGFILE} | \
 		sed -n -e '/^[ \t]*'${x}'/{s:^[ \t]*'${x}'[ \t]\+"\?\([^#"]\+\)[^"]*"\?$:\1: ; p }' | \
-		awk '{print $2}'
+		awk '{print $3}'
 }
 
 extra_started_commands='reload'
 command=/usr/bin/mpdscribble
-command_args="--conf ${CFGFILE}"
+#command_args="--conf ${CFGFILE}"
 required_files=${CFGFILE}
 pidfile=$(get_config pid)
 description="An MPD client that submits information to Audioscrobbler"
