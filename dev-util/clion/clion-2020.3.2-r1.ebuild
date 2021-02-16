@@ -89,7 +89,4 @@ src_install() {
 	fi
 
 	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
-
-	dodir /usr/lib/sysctl.d/
-	echo "fs.inotify.max_user_watches = 524288" > "${D}/usr/lib/sysctl.d/30-clion-inotify-watches.conf" || die
 }
